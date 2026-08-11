@@ -3,9 +3,19 @@ async function queryVisualCrossing(searchTerm = 'Berlin', unitGroup = 'metric'){
         const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${searchTerm}?key=9FNW4QMFS9KMZ42V6738TXB6C&unitGroup=${unitGroup}`);
         const asJson = await response.json();
         console.log(asJson);
+        const icon = asJson.currentConditions.icon;
+        const iconUrl = `./icons/4thSetColor/${icon}.png`;
+        setImgSrc(iconUrl);
+        return asJson;
     } catch(e){
         console.error(e);
     }
 };
 
+function setImgSrc(src){
+    const img = document.querySelector('img');
+    img.src = src;
+}
+
 queryVisualCrossing();
+
