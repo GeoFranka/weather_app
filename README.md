@@ -1,2 +1,2 @@
-# webpack_template
-A template for webpack projects, that includes modern normalize
+# Weather App
+Creating an app that queries weather forecasts from Visual Crossing from anywhere the user wants!
