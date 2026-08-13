@@ -19,6 +19,7 @@ function processData(data, unitGroup){
         humidity: data.currentConditions.humidity,
         precip: addUnit(data.currentConditions.precip, 'precip', unitGroup),
         precipprob: addUnit(data.currentConditions.precipprob, 'probability', unitGroup),
+        preciptype: data.currentConditions.preciptype ? data.currentConditions.preciptype.join("/") : "rain",
         snow: addUnit(data.currentConditions.snow, 'precip', unitGroup),
         winddir: getWindDirection(data.currentConditions.winddir),
         windspeed: addUnit(data.currentConditions.windspeed, 'windspeed', unitGroup),

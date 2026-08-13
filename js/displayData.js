@@ -20,8 +20,9 @@ function setTemperature(temp, feelslike){
     document.querySelector('.feelslike').textContent = feelslike;
 }
 
-function setPrecipitation(probability, height){
+function setPrecipitation(probability, height, type){
     document.querySelector('.precipprob').textContent = probability;
+    document.querySelector('.preciptype').textContent = type;
     const probNumber = probability.split(' ')[0];
     document.querySelector('.precip').textContent = probNumber>0 ? `(${height})` : "";
 }

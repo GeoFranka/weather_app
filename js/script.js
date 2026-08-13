@@ -17,7 +17,7 @@ async function showWeather(searchTerm = 'Berlin', unitGroup = 'metric') {
         setDescription(weatherData.description);
         setIcon(weatherData.icon);
         setTemperature(weatherData.temp, weatherData.feelslike);
-        setPrecipitation(weatherData.precipprob, weatherData.precip);
+        setPrecipitation(weatherData.precipprob, weatherData.precip, weatherData.preciptype);
     } catch(e){
         console.error(e.message);
         setLocation(currentLocation);
