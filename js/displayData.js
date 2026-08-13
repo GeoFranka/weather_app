@@ -11,12 +11,25 @@ function setDescription(description){
 }
 
 function setLocation(location){
-    const span = document.querySelector('.location');
-    span.textContent = location;
+    const input = document.querySelector('.location');
+    input.value = location;
+}
+
+function setTemperature(temp, feelslike){
+    document.querySelector('.temp').textContent = temp;
+    document.querySelector('.feelslike').textContent = feelslike;
+}
+
+function setPrecipitation(probability, height){
+    document.querySelector('.precipprob').textContent = probability;
+    const probNumber = probability.split(' ')[0];
+    document.querySelector('.precip').textContent = probNumber>0 ? `(${height})` : "";
 }
 
 export {
     setIcon,
     setDescription,
     setLocation,
+    setTemperature,
+    setPrecipitation,
 };
