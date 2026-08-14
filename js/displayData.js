@@ -92,3 +92,5 @@ export default function fillInData(weatherData){
     setNextDays(weatherData.days);
     setSunriseSet(weatherData.sunrise, weatherData.sunset);
 }
+
+export { setLocation };

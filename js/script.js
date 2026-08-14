@@ -1,12 +1,12 @@
 import queryVisualCrossing from "./queryVC.js";
-import fillInData from "./displayData.js";
+import fillInData, { setLocation } from "./displayData.js";
 import { storageAvailable, saveLastLocation, getLastLocation } from "./localStorage.js";
 
 const location = document.querySelector('.location');
 const unitGroup = document.querySelector('#unitGroup');
 const container = document.querySelector('.container');
 let currentLocation;
-if(storageAvailable('localStorage') && getLastLocation().length>0){
+if(storageAvailable('localStorage') && getLastLocation()){
     currentLocation = getLastLocation();
 } else {
     currentLocation = 'Berlin';
