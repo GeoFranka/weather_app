@@ -16,7 +16,6 @@ function processData(data, unitGroup){
         icon: data.currentConditions.icon,
         temp: addUnit(data.currentConditions.temp, 'temp', unitGroup),
         feelslike: addUnit(data.currentConditions.feelslike, 'temp', unitGroup),
-        humidity: data.currentConditions.humidity,
         precip: addUnit(data.currentConditions.precip, 'precip', unitGroup),
         precipprob: addUnit(data.currentConditions.precipprob, 'probability', unitGroup),
         preciptype: data.currentConditions.preciptype ? data.currentConditions.preciptype.join("/") : "rain",
@@ -25,8 +24,25 @@ function processData(data, unitGroup){
         windspeed: addUnit(data.currentConditions.windspeed, 'windspeed', unitGroup),
         sunrise: data.currentConditions.sunrise,
         sunset: data.currentConditions.sunset,
+        alerts: data.alerts,
+        days: getNextDays(data),
     };
 };
+
+function getNextDays(data, n = 3){
+    let nextDays = [];
+    for(let i=1; i<n+1; i++){
+        const day = data.days[i];
+        nextDays.push({
+            weekday: getWeekday(day.datetime),
+            tempmin: day.tempmin,
+            tempmax: day.tempmax,
+            precipprob: day.precipprob,
+            icon: day.icon,
+        });
+    }
+    return nextDays;
+}
 
 function getWindDirection(degree){
     const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
@@ -35,6 +51,13 @@ function getWindDirection(degree){
 
 function addUnit(val, measure, unitGroup){
     return `${val} ${GROUPS[unitGroup][measure]}`;
+}
+
+function getWeekday(dateString){
+    // in format "yyyy-mm-dd"
+    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const date = new Date(dateString);
+    return weekdays[date.getDay()];
 }
 
 export { queryVisualCrossing };

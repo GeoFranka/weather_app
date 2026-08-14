@@ -5,29 +5,35 @@ import {
     setDescription,
     setTemperature,
     setPrecipitation,
+    setWind,
+    setAlerts,
  } from "./displayData.js";
 
-let currentLocation;
+const location = document.querySelector('.location');
+const unitGroup = document.querySelector('#unitGroup');
+let currentLocation = 'Berlin';
 
-async function showWeather(searchTerm = 'Berlin', unitGroup = 'metric') {
+async function showWeather() {
+    const searchTerm = location.value ? toCamelCase(location.value) : currentLocation;
+    const unitGroupVal = unitGroup.value;
     try{
-        const weatherData = await queryVisualCrossing(searchTerm, unitGroup);
+        const weatherData = await queryVisualCrossing(searchTerm, unitGroupVal);
         currentLocation = weatherData.location;
         setLocation(currentLocation);
         setDescription(weatherData.description);
         setIcon(weatherData.icon);
         setTemperature(weatherData.temp, weatherData.feelslike);
         setPrecipitation(weatherData.precipprob, weatherData.precip, weatherData.preciptype);
+        setWind(weatherData.winddir, weatherData.windspeed);
+        setAlerts(weatherData.alerts);
     } catch(e){
         console.error(e.message);
         setLocation(currentLocation);
     }
 }
 
-const location = document.querySelector('.location');
-location.addEventListener('change', ()=>{
-    showWeather(toCamelCase(location.value));
-});
+location.addEventListener('change', showWeather);
+unitGroup.addEventListener('change', showWeather);
 
 const toCamelCase = function(string){
     return string[0].toUpperCase() + string.substring(1).toLowerCase();

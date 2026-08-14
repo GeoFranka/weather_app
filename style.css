@@ -3,16 +3,29 @@ p {
 }
 
 .container {
+    max-width: 50vw;
+    min-width: 300px;
     display: grid;
-    grid-template-columns: min-content max-content;
+    grid-template-columns: min-content 1fr;
     align-items: center;
-    column-gap: 10px;
+    gap: 10px;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    align-items: center;
+    gap: 10px;
 }
 
 .text {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.description, .header, .alerts {
+    grid-column: 1 / -1;
 }
 
 .location {
@@ -27,4 +40,29 @@ p {
     border-radius: 3px;
     font-weight: normal;
     padding: 5px 10px;
+}
+
+.temp, .precipprob, .winddir {
+    font-weight: 700;
+}
+
+.alerts {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.alert {
+    padding: 5px 10px;
+    background-color: pink;
+    border: 2px solid red;
+    border-radius: 5px;
+}
+
+.alert a {
+    color: red;
+    text-decoration: none;
+}
+.alert a:hover {
+    text-decoration: underline;
 }
