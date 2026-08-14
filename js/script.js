@@ -1,20 +1,16 @@
-import { queryVisualCrossing } from "./queryVC.js";
-import {
-    setIcon,
-    setLocation,
-    setDescription,
-    setTemperature,
-    setPrecipitation,
-    setWind,
-    setAlerts,
-    setNextDays,
-    setSunriseSet,
- } from "./displayData.js";
+import queryVisualCrossing from "./queryVC.js";
+import fillInData from "./displayData.js";
+import { storageAvailable, saveLastLocation, getLastLocation } from "./localStorage.js";
 
 const location = document.querySelector('.location');
 const unitGroup = document.querySelector('#unitGroup');
 const currentDiv = document.querySelector('.current');
-let currentLocation = 'Berlin';
+let currentLocation;
+if(storageAvailable('localStorage') && getLastLocation().length>0){
+    currentLocation = getLastLocation();
+} else {
+    currentLocation = 'Berlin';
+}
 
 async function showWeather() {
     currentDiv.style.display = 'none';
@@ -23,15 +19,8 @@ async function showWeather() {
     try{
         const weatherData = await queryVisualCrossing(searchTerm, unitGroupVal);
         currentLocation = weatherData.location;
-        setLocation(currentLocation);
-        setDescription(weatherData.description);
-        setIcon(weatherData.icon);
-        setTemperature(weatherData.temp, weatherData.feelslike);
-        setPrecipitation(weatherData.precipprob, weatherData.precip, weatherData.preciptype);
-        setWind(weatherData.winddir, weatherData.windspeed);
-        setAlerts(weatherData.alerts);
-        setNextDays(weatherData.days);
-        setSunriseSet(weatherData.sunrise, weatherData.sunset);
+        saveLastLocation(currentLocation);
+        fillInData(weatherData);
     } catch(e){
         console.error(e.message);
         setLocation(currentLocation);

@@ -61,4 +61,4 @@ function getWeekday(dateString){
     return weekdays[date.getDay()];
 }
 
-export { queryVisualCrossing };
+export default queryVisualCrossing;

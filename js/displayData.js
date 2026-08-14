@@ -81,14 +81,14 @@ function setSunriseSet(rise, sunset){
     document.querySelector('.sunset').textContent = sunset;
 }
 
-export {
-    setIcon,
-    setDescription,
-    setLocation,
-    setTemperature,
-    setPrecipitation,
-    setWind,
-    setAlerts,
-    setNextDays,
-    setSunriseSet,
-};
+export default function fillInData(weatherData){
+    setLocation(weatherData.location);
+    setDescription(weatherData.description);
+    setIcon(weatherData.icon);
+    setTemperature(weatherData.temp, weatherData.feelslike);
+    setPrecipitation(weatherData.precipprob, weatherData.precip, weatherData.preciptype);
+    setWind(weatherData.winddir, weatherData.windspeed);
+    setAlerts(weatherData.alerts);
+    setNextDays(weatherData.days);
+    setSunriseSet(weatherData.sunrise, weatherData.sunset);
+}
