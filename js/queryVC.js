@@ -25,7 +25,7 @@ function processData(data, unitGroup){
         sunrise: data.currentConditions.sunrise,
         sunset: data.currentConditions.sunset,
         alerts: data.alerts,
-        days: getNextDays(data, unitGroup),
+        days: getNextDays(data, unitGroup, 5),
     };
 };
 

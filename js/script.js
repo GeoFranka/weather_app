@@ -4,7 +4,7 @@ import { storageAvailable, saveLastLocation, getLastLocation } from "./localStor
 
 const location = document.querySelector('.location');
 const unitGroup = document.querySelector('#unitGroup');
-const currentDiv = document.querySelector('.current');
+const container = document.querySelector('.container');
 let currentLocation;
 if(storageAvailable('localStorage') && getLastLocation().length>0){
     currentLocation = getLastLocation();
@@ -13,7 +13,7 @@ if(storageAvailable('localStorage') && getLastLocation().length>0){
 }
 
 async function showWeather() {
-    currentDiv.style.display = 'none';
+    container.classList.add('loading');
     const searchTerm = location.value ? toCamelCase(location.value) : currentLocation;
     const unitGroupVal = unitGroup.value;
     try{
@@ -25,7 +25,7 @@ async function showWeather() {
         console.error(e.message);
         setLocation(currentLocation);
     } finally {
-        currentDiv.style.display = 'flex';
+        container.classList.remove('loading');
     }
 }
 

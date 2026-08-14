@@ -16,20 +16,20 @@ function setLocation(location){
 }
 
 function setTemperature(temp, feelslike){
-    document.querySelector('.temp').textContent = temp;
-    document.querySelector('.feelslike').textContent = feelslike;
+    document.querySelector('.temp').innerHTML = `<b>${temp}</b>`;
+    document.querySelector('.feelslike').textContent = `, feels like ${feelslike}`;
 }
 
 function setPrecipitation(probability, height, type){
-    document.querySelector('.precipprob').textContent = probability;
-    document.querySelector('.preciptype').textContent = type;
+    document.querySelector('.precipprob').innerHTML = `<b>${probability}</b> chance `;
+    document.querySelector('.preciptype').textContent = `of ${type}`;
     const probNumber = probability.split(' ')[0];
-    document.querySelector('.precip').textContent = probNumber>0 ? `(${height})` : "";
+    document.querySelector('.precip').textContent = probNumber>0 ? ` (${height})` : "";
 }
 
 function setWind(direction, speed){
-    document.querySelector('.winddir').textContent = direction;
-    document.querySelector('.windspeed').textContent = speed;
+    document.querySelector('.winddir').innerHTML = `wind from <b>${direction}</b>`;
+    document.querySelector('.windspeed').textContent = `(${speed})`;
 }
 
 function setAlerts(alerts){

@@ -1,13 +1,26 @@
+body {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(360px, 700px);
+}
+
 p {
     margin: 0;
 }
 
+.loading, .loading input, .loading select, .loading .alert a {
+    color: gray;
+    cursor: not-allowed;
+}
+.loading .alert {
+    border-color: gray;
+    background-color: lightgray;
+}
+
 .container {
-    max-width: 50vw;
-    min-width: 300px;
-    margin: auto;
     display: grid;
     gap: 10px;
+    padding: 0 10px;
 }
 
 .header {
@@ -16,13 +29,16 @@ p {
     align-items: center;
     gap: 10px;
 }
+@media (max-width: 630px) {
+  .header {grid-template-columns: 1fr;}
+}
 
 #unitGroup {
     padding: 3px 6px;
 }
 
 .current {
-    display: none;
+    display: flex;
     align-items: start;
     gap: 20px;
 }
@@ -56,10 +72,6 @@ p {
     border-radius: 3px;
     font-weight: normal;
     padding: 5px 10px;
-}
-
-.temp, .precipprob, .winddir {
-    font-weight: 700;
 }
 
 .alerts {
