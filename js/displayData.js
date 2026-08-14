@@ -48,6 +48,28 @@ function setAlerts(alerts){
 }
 
 function setNextDays(nextDays){
+    const daysDiv = document.querySelector('.days');
+    daysDiv.textContent = "";
+    nextDays.forEach((d)=>{
+        const day = document.createElement('div');
+        day.classList.add('day');
+        const weekday = document.createElement('div');
+        weekday.classList.add('weekday');
+        weekday.textContent = d.weekday;
+        day.appendChild(weekday);
+        const icon = document.createElement('img');
+        icon.classList.add('icon');
+        icon.src = `./icons/4thSetColor/${d.icon}.png`;
+        icon.setAttribute('alt', d.icon);
+        day.appendChild(icon);
+        const tempDiv = document.createElement('div');
+        tempDiv.textContent = `${d.tempmin} - ${d.tempmax}`;
+        day.appendChild(tempDiv);
+        const precipDiv = document.createElement('div');
+        precipDiv.textContent = `${d.precipprob} ${d.preciptype}`;
+        day.appendChild(precipDiv);
+        daysDiv.appendChild(day);
+    });
 
 }
 

@@ -24,7 +24,7 @@ p {
     justify-content: center;
 }
 
-.description, .header, .alerts {
+.description, .header, .alerts, .days {
     grid-column: 1 / -1;
 }
 
@@ -65,4 +65,28 @@ p {
 }
 .alert a:hover {
     text-decoration: underline;
+}
+
+.days {
+    display: flex;
+    gap: 10px;
+    align-content: space-between;
+}
+
+.day {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: max-content;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.weekday {
+    font-weight: 600;
+}
+
+.day .icon {
+    max-height: 50px;
+    max-width: 60px;
 }

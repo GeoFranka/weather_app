@@ -25,19 +25,20 @@ function processData(data, unitGroup){
         sunrise: data.currentConditions.sunrise,
         sunset: data.currentConditions.sunset,
         alerts: data.alerts,
-        days: getNextDays(data),
+        days: getNextDays(data, unitGroup),
     };
 };
 
-function getNextDays(data, n = 3){
+function getNextDays(data, unitGroup, n = 3){
     let nextDays = [];
     for(let i=1; i<n+1; i++){
         const day = data.days[i];
         nextDays.push({
             weekday: getWeekday(day.datetime),
             tempmin: day.tempmin,
-            tempmax: day.tempmax,
-            precipprob: day.precipprob,
+            tempmax: addUnit(day.tempmax, 'temp', unitGroup),
+            precipprob: addUnit(day.precipprob, 'probability', unitGroup),
+            preciptype: day.preciptype ? day.preciptype.join("/") : "rain",
             icon: day.icon,
         });
     }
