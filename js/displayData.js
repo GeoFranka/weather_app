@@ -53,21 +53,25 @@ function setNextDays(nextDays){
     nextDays.forEach((d)=>{
         const day = document.createElement('div');
         day.classList.add('day');
+        const firstDiv = document.createElement('div');
         const weekday = document.createElement('div');
         weekday.classList.add('weekday');
         weekday.textContent = d.weekday;
-        day.appendChild(weekday);
+        firstDiv.appendChild(weekday);
         const icon = document.createElement('img');
         icon.classList.add('icon');
         icon.src = `./icons/4thSetColor/${d.icon}.png`;
         icon.setAttribute('alt', d.icon);
-        day.appendChild(icon);
+        firstDiv.appendChild(icon);
+        day.appendChild(firstDiv);
+        const secondDiv = document.createElement('div');
         const tempDiv = document.createElement('div');
         tempDiv.textContent = `${d.tempmin} - ${d.tempmax}`;
-        day.appendChild(tempDiv);
+        secondDiv.appendChild(tempDiv);
         const precipDiv = document.createElement('div');
         precipDiv.textContent = `${d.precipprob} ${d.preciptype}`;
-        day.appendChild(precipDiv);
+        secondDiv.appendChild(precipDiv);
+        day.appendChild(secondDiv);
         daysDiv.appendChild(day);
     });
 

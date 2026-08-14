@@ -5,9 +5,8 @@ p {
 .container {
     max-width: 50vw;
     min-width: 300px;
+    margin: auto;
     display: grid;
-    grid-template-columns: min-content 1fr;
-    align-items: center;
     gap: 10px;
 }
 
@@ -18,14 +17,31 @@ p {
     gap: 10px;
 }
 
+#unitGroup {
+    padding: 3px 6px;
+}
+
+.current {
+    display: none;
+    align-items: start;
+    gap: 20px;
+}
+
+.sun {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.sun img {
+    height: 1.5rem;
+}
+
 .text {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.description, .header, .alerts, .days {
-    grid-column: 1 / -1;
 }
 
 .location {
@@ -70,16 +86,18 @@ p {
 .days {
     display: flex;
     gap: 10px;
-    align-content: space-between;
+    flex-wrap: wrap;
 }
 
 .day {
     display: grid;
     justify-items: center;
+    align-content: space-between;
     grid-template-columns: max-content;
     padding: 5px;
     border: 1px solid gray;
     border-radius: 5px;
+    text-align: center;
 }
 
 .weekday {

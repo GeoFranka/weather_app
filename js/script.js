@@ -12,9 +12,11 @@ import {
 
 const location = document.querySelector('.location');
 const unitGroup = document.querySelector('#unitGroup');
+const currentDiv = document.querySelector('.current');
 let currentLocation = 'Berlin';
 
 async function showWeather() {
+    currentDiv.style.display = 'none';
     const searchTerm = location.value ? toCamelCase(location.value) : currentLocation;
     const unitGroupVal = unitGroup.value;
     try{
@@ -31,6 +33,8 @@ async function showWeather() {
     } catch(e){
         console.error(e.message);
         setLocation(currentLocation);
+    } finally {
+        currentDiv.style.display = 'flex';
     }
 }
 
