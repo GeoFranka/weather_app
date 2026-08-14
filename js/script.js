@@ -8,6 +8,7 @@ import {
     setWind,
     setAlerts,
     setNextDays,
+    setSunriseSet,
  } from "./displayData.js";
 
 const location = document.querySelector('.location');
@@ -30,6 +31,7 @@ async function showWeather() {
         setWind(weatherData.winddir, weatherData.windspeed);
         setAlerts(weatherData.alerts);
         setNextDays(weatherData.days);
+        setSunriseSet(weatherData.sunrise, weatherData.sunset);
     } catch(e){
         console.error(e.message);
         setLocation(currentLocation);

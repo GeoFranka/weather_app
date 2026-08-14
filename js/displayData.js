@@ -74,7 +74,11 @@ function setNextDays(nextDays){
         day.appendChild(secondDiv);
         daysDiv.appendChild(day);
     });
+}
 
+function setSunriseSet(rise, sunset){
+    document.querySelector('.sunrise').textContent = rise;
+    document.querySelector('.sunset').textContent = sunset;
 }
 
 export {
@@ -86,4 +90,5 @@ export {
     setWind,
     setAlerts,
     setNextDays,
+    setSunriseSet,
 };
