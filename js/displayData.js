@@ -45,6 +45,7 @@ function setAlerts(alerts){
         div.appendChild(link);
         alertsDiv.appendChild(div);
     });
+    alertsDiv.style.display = alerts.length===0 ? 'none' : 'flex';
 }
 
 function setNextDays(nextDays){
@@ -65,6 +66,7 @@ function setNextDays(nextDays){
         firstDiv.appendChild(icon);
         day.appendChild(firstDiv);
         const secondDiv = document.createElement('div');
+        secondDiv.classList.add('forecast');
         const tempDiv = document.createElement('div');
         tempDiv.textContent = `${d.tempmin} - ${d.tempmax}`;
         secondDiv.appendChild(tempDiv);

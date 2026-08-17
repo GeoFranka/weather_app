@@ -29,8 +29,9 @@ function processData(data, unitGroup){
     };
 };
 
-function getNextDays(data, unitGroup, n = 3){
+function getNextDays(data, unitGroup, n){
     let nextDays = [];
+    n = n || data.days.length - 1;  // because today is included, which we don't need here
     for(let i=1; i<n+1; i++){
         const day = data.days[i];
         nextDays.push({
