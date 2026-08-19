@@ -4,8 +4,12 @@ const API_KEY = '9FNW4QMFS9KMZ42V6738TXB6C';
 
 async function queryVisualCrossing(searchTerm = 'Berlin', unitGroup = 'metric'){
     const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${searchTerm}?key=${API_KEY}&unitGroup=${unitGroup}`);
-    const asJson = await response.json();
-    return processData(asJson, unitGroup);
+    if(response.ok){
+        const asJson = await response.json();
+        return processData(asJson, unitGroup);
+    } else {
+        throw new Error('query failed', {cause: `response status ${response.status}`});
+    }
 };
 
 function processData(data, unitGroup){
